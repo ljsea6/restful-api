@@ -1,15 +1,29 @@
 version: '3.9'
 services:
   db:
-    image: postgres:14.1-alpine
+    image: postgres:13.1
     restart: always
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "api" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_USER: api
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: default_database
     ports:
       - '5432:5432'
     volumes: 
       - db:/var/lib/postgresql/data
+  
+  admin:
+    image: adminer
+    restart: always
+    depends_on: 
+      - db
+    ports:
+      - 8080:8080
 volumes:
   db:
     driver: local

@@ -30,7 +30,7 @@ func (r *UserRepositoryImpl) FindAllUser() ([]dao.User, error) {
 	return users, nil
 }
 
-func (r *UserRepositoryImpl) FindUserById(id int) (dao.User, error) {
+func (r *UserRepositoryImpl) FindUserByID(id int) (dao.User, error) {
 	user := dao.User{
 		ID: id,
 	}
@@ -51,7 +51,7 @@ func (r *UserRepositoryImpl) Save(user *dao.User) (dao.User, error) {
 	return *user, nil
 }
 
-func (r *UserRepositoryImpl) DeleteUserById(id int) error {
+func (r *UserRepositoryImpl) DeleteUserByID(id int) error {
 	err := r.db.Delete(&dao.User{}, id).Error
 	if err != nil {
 		log.Error("Got an error when delete user. Error: ", err)
