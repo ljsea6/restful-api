@@ -1,8 +1,8 @@
 package pkg
 
 import (
-	"ljsea6/restful-api/app/constant"
-	"ljsea6/restful-api/app/domain/dto"
+	"github.com/ljsea6/restful-api/app/constant"
+	"github.com/ljsea6/restful-api/app/domain/dto"
 )
 
 func Null() interface{} {
